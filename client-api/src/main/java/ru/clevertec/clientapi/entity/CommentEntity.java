@@ -25,6 +25,8 @@ public class CommentEntity {
 
     private String username;
 
+    private String text;
+
     @ManyToOne
     @JoinColumn(name = "news_id")
     private NewsEntity news;

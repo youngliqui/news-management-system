@@ -7,26 +7,37 @@ import org.springframework.web.bind.annotation.*;
 import ru.clevertec.clientapi.dto.NewsCreateDTO;
 import ru.clevertec.clientapi.dto.NewsInfoDTO;
 import ru.clevertec.clientapi.dto.NewsUpdateDTO;
-import ru.clevertec.clientapi.service.NewsService;
+import ru.clevertec.clientapi.service.information.NewsInformationService;
+import ru.clevertec.clientapi.service.management.NewsManagementService;
 
 @RestController("/api/news")
 @RequiredArgsConstructor
 public class NewsController {
-    private final NewsService newsService;
+    private final NewsInformationService newsInformationService;
+    private final NewsManagementService newsManagementService;
 
     @GetMapping
     public Page<NewsInfoDTO> getAllNews(
             @RequestParam(required = false, defaultValue = "10") int size,
             @RequestParam(required = false, defaultValue = "0") int page
     ) {
-        return newsService.getAll(size, page);
+        return newsInformationService.getAll(size, page);
     }
 
     @GetMapping("/{newsId}")
     public NewsInfoDTO getNewsById(
             @PathVariable Long newsId
     ) {
-        return newsService.getNewsInfoById(newsId);
+        return newsInformationService.getNewsInfoById(newsId);
+    }
+
+    @GetMapping("/search")
+    public Page<NewsInfoDTO> search(
+            @RequestParam String text,
+            @RequestParam(required = false) int size,
+            @RequestParam(required = false) int page
+    ) {
+        return newsInformationService.fullTextSearch(text, size, page);
     }
 
     @PostMapping
@@ -34,7 +45,7 @@ public class NewsController {
     public NewsInfoDTO createNews(
             @RequestBody NewsCreateDTO newsCreateDTO
     ) {
-        return newsService.createNews(newsCreateDTO);
+        return newsManagementService.createNews(newsCreateDTO);
     }
 
     @PutMapping("/{newsId}")
@@ -42,7 +53,7 @@ public class NewsController {
             @PathVariable Long newsId,
             @RequestBody NewsUpdateDTO newsUpdateDTO
     ) {
-        return newsService.updateNews(newsId, newsUpdateDTO);
+        return newsManagementService.updateNews(newsId, newsUpdateDTO);
     }
 
     @PatchMapping("/{newsId}")
@@ -50,7 +61,7 @@ public class NewsController {
             @PathVariable Long newsId,
             @RequestBody NewsUpdateDTO newsUpdateDTO
     ) {
-        return newsService.patchNews(newsId, newsUpdateDTO);
+        return newsManagementService.patchNews(newsId, newsUpdateDTO);
     }
 
     @DeleteMapping("/{newsId}")
@@ -58,6 +69,6 @@ public class NewsController {
     public void deleteNews(
             @PathVariable Long newsId
     ) {
-        newsService.deleteNewsById(newsId);
+        newsManagementService.deleteNewsById(newsId);
     }
 }

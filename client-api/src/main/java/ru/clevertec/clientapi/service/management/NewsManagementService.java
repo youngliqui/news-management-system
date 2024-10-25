@@ -1,19 +1,10 @@
-package ru.clevertec.clientapi.service;
+package ru.clevertec.clientapi.service.management;
 
-import org.springframework.data.domain.Page;
 import ru.clevertec.clientapi.dto.NewsCreateDTO;
 import ru.clevertec.clientapi.dto.NewsInfoDTO;
 import ru.clevertec.clientapi.dto.NewsUpdateDTO;
-import ru.clevertec.clientapi.entity.NewsEntity;
 
-public interface NewsService {
-
-    Page<NewsInfoDTO> getAll(int size, int page);
-
-    NewsEntity getNewsById(Long newsId);
-
-    NewsInfoDTO getNewsInfoById(Long newsId);
-
+public interface NewsManagementService {
     NewsInfoDTO createNews(NewsCreateDTO newsCreateDTO);
 
     NewsInfoDTO updateNews(Long newsId, NewsUpdateDTO newsUpdateDTO);
