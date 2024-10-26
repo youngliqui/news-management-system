@@ -1,4 +1,4 @@
-package ru.clevertec.clientapi.service.management;
+package ru.clevertec.clientapi.service.management.comment;
 
 import ru.clevertec.clientapi.dto.CommentCreateDTO;
 import ru.clevertec.clientapi.dto.CommentInfoDTO;

@@ -8,9 +8,9 @@ import ru.clevertec.clientapi.dto.CommentCreateDTO;
 import ru.clevertec.clientapi.dto.CommentInfoDTO;
 import ru.clevertec.clientapi.dto.CommentUpdateDTO;
 import ru.clevertec.clientapi.entity.NewsEntity;
-import ru.clevertec.clientapi.service.information.CommentInformationService;
-import ru.clevertec.clientapi.service.information.NewsInformationService;
-import ru.clevertec.clientapi.service.management.CommentManagementService;
+import ru.clevertec.clientapi.service.information.comment.CommentInformationService;
+import ru.clevertec.clientapi.service.information.news.NewsInformationService;
+import ru.clevertec.clientapi.service.management.comment.CommentManagementService;
 
 @RestController
 @RequiredArgsConstructor

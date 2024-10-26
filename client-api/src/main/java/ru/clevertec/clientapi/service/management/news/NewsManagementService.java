@@ -1,4 +1,4 @@
-package ru.clevertec.clientapi.service.management;
+package ru.clevertec.clientapi.service.management.news;
 
 import ru.clevertec.clientapi.dto.NewsCreateDTO;
 import ru.clevertec.clientapi.dto.NewsInfoDTO;

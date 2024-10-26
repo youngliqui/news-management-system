@@ -1,3 +1,8 @@
+plugins {
+    id 'org.liquibase.gradle' version '2.2.0'
+}
+
+
 /**
  * Submodules import sample
  */
@@ -10,4 +15,25 @@ dependencies {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+}
+
+/**
+ * Mapstruct
+ */
+dependencies {
+    implementation 'org.mapstruct:mapstruct:1.6.2'
+}
+
+/**
+ * Liquibase
+ */
+dependencies {
+    implementation 'org.liquibase:liquibase-core'
+}
+
+/**
+ * Postgres
+ */
+dependencies {
+    runtimeOnly 'org.postgresql:postgresql'
 }

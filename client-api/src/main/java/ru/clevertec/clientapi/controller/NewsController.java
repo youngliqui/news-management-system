@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.clevertec.clientapi.dto.NewsCreateDTO;
 import ru.clevertec.clientapi.dto.NewsInfoDTO;
 import ru.clevertec.clientapi.dto.NewsUpdateDTO;
-import ru.clevertec.clientapi.service.information.NewsInformationService;
-import ru.clevertec.clientapi.service.management.NewsManagementService;
+import ru.clevertec.clientapi.service.information.news.NewsInformationService;
+import ru.clevertec.clientapi.service.management.news.NewsManagementService;
 
 @RestController("/api/news")
 @RequiredArgsConstructor

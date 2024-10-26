@@ -1,4 +1,4 @@
-package ru.clevertec.clientapi.service.information;
+package ru.clevertec.clientapi.service.information.comment;
 
 import org.springframework.data.domain.Page;
 import ru.clevertec.clientapi.dto.CommentInfoDTO;
