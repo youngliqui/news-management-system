@@ -45,15 +45,14 @@ public class NewsInformationServiceImpl implements NewsInformationService {
     @Override
     public Page<NewsInfoDTO> fullTextSearch(String text, int size, int page) {
         Pageable pageable = PageRequest.of(page, size);
-        var news = newsRepository.searchByText(text, pageable);
+        List<NewsEntity> news = newsRepository.searchByText(text);
 
-        return news.map(newsMapper::newsToNewsInfoDTO);
-//        return new PageImpl<>(
-//                news.stream()
-//                        .map(newsMapper::newsToNewsInfoDTO)
-//                        .collect(Collectors.toList()),
-//                pageable,
-//                news.size()
-//        );
+        return new PageImpl<>(
+                news.stream()
+                        .map(newsMapper::newsToNewsInfoDTO)
+                        .collect(Collectors.toList()),
+                pageable,
+                news.size()
+        );
     }
 }

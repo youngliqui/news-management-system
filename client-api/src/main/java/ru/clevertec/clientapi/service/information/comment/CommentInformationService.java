@@ -7,4 +7,6 @@ public interface CommentInformationService {
     Page<CommentInfoDTO> getComments(Long newsId, int size, int page);
 
     CommentInfoDTO getCommentInfoById(Long commentId);
+
+    Page<CommentInfoDTO> fullTextSearch(String text, int size, int page);
 }

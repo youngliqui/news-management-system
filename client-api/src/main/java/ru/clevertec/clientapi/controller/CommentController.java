@@ -13,13 +13,14 @@ import ru.clevertec.clientapi.service.information.news.NewsInformationService;
 import ru.clevertec.clientapi.service.management.comment.CommentManagementService;
 
 @RestController
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class CommentController {
     private final CommentInformationService commentInformationService;
     private final CommentManagementService commentManagementService;
     private final NewsInformationService newsInformationService;
 
-    @GetMapping("/api/{newsId}/comments")
+    @GetMapping("/news/{newsId}/comments")
     public Page<CommentInfoDTO> getNewsComments(
             @PathVariable Long newsId,
             @RequestParam int size,
@@ -28,7 +29,7 @@ public class CommentController {
         return commentInformationService.getComments(newsId, size, page);
     }
 
-    @GetMapping("/api/{newsId}/comments/{commentId}")
+    @GetMapping("/news/{newsId}/comments/{commentId}")
     public CommentInfoDTO getCommentById(
             @PathVariable Long newsId,
             @PathVariable Long commentId
@@ -36,7 +37,16 @@ public class CommentController {
         return commentInformationService.getCommentInfoById(commentId);
     }
 
-    @PostMapping("/api/{newsId}/comments")
+    @GetMapping("/comments/search")
+    public Page<CommentInfoDTO> fullTextSearch(
+            @RequestParam String text,
+            @RequestParam(required = false, defaultValue = "10") int size,
+            @RequestParam(required = false, defaultValue = "0") int page
+    ) {
+        return commentInformationService.fullTextSearch(text, size, page);
+    }
+
+    @PostMapping("/news/{newsId}/comments")
     @ResponseStatus(HttpStatus.CREATED)
     public CommentInfoDTO createComment(
             @PathVariable Long newsId,
@@ -46,7 +56,7 @@ public class CommentController {
         return commentManagementService.createComment(news, commentCreateDTO);
     }
 
-    @PutMapping("/api/{newsId}/comments/{commentId}")
+    @PutMapping("/news/{newsId}/comments/{commentId}")
     public CommentInfoDTO updateComment(
             @PathVariable Long newsId,
             @PathVariable Long commentId,
@@ -55,7 +65,7 @@ public class CommentController {
         return commentManagementService.updateComment(commentId, commentUpdateDTO);
     }
 
-    @PatchMapping("/api/{newsId}/comments/{commentId}")
+    @PatchMapping("/news/{newsId}/comments/{commentId}")
     public CommentInfoDTO patchComment(
             @PathVariable Long newsId,
             @PathVariable Long commentId,
@@ -64,7 +74,7 @@ public class CommentController {
         return commentManagementService.patchComment(commentId, commentUpdateDTO);
     }
 
-    @DeleteMapping("/api/{newsId}/comments/{commentId}")
+    @DeleteMapping("/news/{newsId}/comments/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteComment(
             @PathVariable Long newsId,

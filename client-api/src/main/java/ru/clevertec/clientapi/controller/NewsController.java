@@ -10,7 +10,8 @@ import ru.clevertec.clientapi.dto.NewsUpdateDTO;
 import ru.clevertec.clientapi.service.information.news.NewsInformationService;
 import ru.clevertec.clientapi.service.management.news.NewsManagementService;
 
-@RestController("/api/news")
+@RestController
+@RequestMapping("/api/news")
 @RequiredArgsConstructor
 public class NewsController {
     private final NewsInformationService newsInformationService;
@@ -34,8 +35,8 @@ public class NewsController {
     @GetMapping("/search")
     public Page<NewsInfoDTO> search(
             @RequestParam String text,
-            @RequestParam(required = false) int size,
-            @RequestParam(required = false) int page
+            @RequestParam(required = false, defaultValue = "10") int size,
+            @RequestParam(required = false, defaultValue = "0") int page
     ) {
         return newsInformationService.fullTextSearch(text, size, page);
     }
