@@ -29,9 +29,9 @@ public class NewsManagementServiceImpl implements NewsManagementService {
                 .orElseThrow(() ->
                         new NewsNotFoundException("News with id=" + newsId + " was not found"));
 
-        NewsEntity updatedNews = newsMapper.updateNews(newsEntity, newsUpdateDTO);
+        newsMapper.updateNewsFromDTO(newsEntity, newsUpdateDTO);
 
-        return newsMapper.newsToNewsInfoDTO(updatedNews);
+        return newsMapper.newsToNewsInfoDTO(newsEntity);
     }
 
     @Override
@@ -40,9 +40,9 @@ public class NewsManagementServiceImpl implements NewsManagementService {
                 .orElseThrow(() ->
                         new NewsNotFoundException("News with id=" + newsId + " was not found"));
 
-        NewsEntity patchedNews = newsMapper.patchNews(newsEntity, newsUpdateDTO);
+        newsMapper.patchNewsFromDTO(newsEntity, newsUpdateDTO);
 
-        return newsMapper.newsToNewsInfoDTO(patchedNews);
+        return newsMapper.newsToNewsInfoDTO(newsEntity);
     }
 
     @Override

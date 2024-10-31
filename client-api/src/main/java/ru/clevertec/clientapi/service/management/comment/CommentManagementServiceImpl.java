@@ -31,9 +31,9 @@ public class CommentManagementServiceImpl implements CommentManagementService {
                 .orElseThrow(() ->
                         new CommentNotFoundException("Comment with id=" + commentId + " was not found"));
 
-        CommentEntity updatedComment = commentMapper.updateComment(comment, commentUpdateDTO);
+        commentMapper.updateCommentFromDTO(comment, commentUpdateDTO);
 
-        return commentMapper.commentToCommentInfoDTO(updatedComment);
+        return commentMapper.commentToCommentInfoDTO(comment);
     }
 
     @Override
@@ -42,9 +42,9 @@ public class CommentManagementServiceImpl implements CommentManagementService {
                 .orElseThrow(() ->
                         new CommentNotFoundException("Comment with id=" + commentId + " was not found"));
 
-        CommentEntity patchedComment = commentMapper.patchComment(comment, commentUpdateDTO);
+        commentMapper.patchCommentFromDTO(comment, commentUpdateDTO);
 
-        return commentMapper.commentToCommentInfoDTO(patchedComment);
+        return commentMapper.commentToCommentInfoDTO(comment);
     }
 
     @Override
