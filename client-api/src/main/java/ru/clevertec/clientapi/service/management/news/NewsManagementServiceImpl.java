@@ -25,32 +25,30 @@ public class NewsManagementServiceImpl implements NewsManagementService {
 
     @Override
     public NewsInfoDTO updateNews(Long newsId, NewsUpdateDTO newsUpdateDTO) {
-        NewsEntity newsEntity = newsRepository.findById(newsId)
-                .orElseThrow(() ->
-                        new NewsNotFoundException("News with id=" + newsId + " was not found"));
-
+        NewsEntity newsEntity = getNewsById(newsId);
         newsMapper.updateNewsFromDTO(newsEntity, newsUpdateDTO);
 
-        return newsMapper.newsToNewsInfoDTO(newsEntity);
+        return newsMapper.newsToNewsInfoDTO(newsRepository.save(newsEntity));
     }
 
     @Override
     public NewsInfoDTO patchNews(Long newsId, NewsUpdateDTO newsUpdateDTO) {
-        NewsEntity newsEntity = newsRepository.findById(newsId)
-                .orElseThrow(() ->
-                        new NewsNotFoundException("News with id=" + newsId + " was not found"));
-
+        NewsEntity newsEntity = getNewsById(newsId);
         newsMapper.patchNewsFromDTO(newsEntity, newsUpdateDTO);
 
-        return newsMapper.newsToNewsInfoDTO(newsEntity);
+        return newsMapper.newsToNewsInfoDTO(newsRepository.save(newsEntity));
     }
 
     @Override
     public void deleteNewsById(Long newsId) {
-        NewsEntity newsEntity = newsRepository.findById(newsId)
-                .orElseThrow(() ->
-                        new NewsNotFoundException("News with id=" + newsId + " was not found"));
+        NewsEntity newsEntity = getNewsById(newsId);
 
         newsRepository.delete(newsEntity);
+    }
+
+    private NewsEntity getNewsById(Long newsId) {
+        return newsRepository.findById(newsId)
+                .orElseThrow(() ->
+                        new NewsNotFoundException("News with id=" + newsId + " was not found"));
     }
 }

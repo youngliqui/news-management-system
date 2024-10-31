@@ -2,7 +2,7 @@ package ru.clevertec.clientapi.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +21,7 @@ public class NewsEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "newsIdSeqGen")
     private Long id;
 
-    @CreatedDate
+    @CreationTimestamp
     private LocalDateTime time;
 
     private String title;

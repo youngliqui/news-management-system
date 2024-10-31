@@ -2,7 +2,7 @@ package ru.clevertec.clientapi.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +20,7 @@ public class CommentEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "commentsIdSegGen")
     private Long id;
 
-    @CreatedDate
+    @CreationTimestamp
     private LocalDateTime time;
 
     private String username;

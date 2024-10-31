@@ -2,7 +2,6 @@ package ru.clevertec.clientapi.service.information.news;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -11,9 +10,6 @@ import ru.clevertec.clientapi.entity.NewsEntity;
 import ru.clevertec.clientapi.exception.NewsNotFoundException;
 import ru.clevertec.clientapi.mapper.NewsMapper;
 import ru.clevertec.clientapi.repository.NewsRepository;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -45,14 +41,8 @@ public class NewsInformationServiceImpl implements NewsInformationService {
     @Override
     public Page<NewsInfoDTO> fullTextSearch(String text, int size, int page) {
         Pageable pageable = PageRequest.of(page, size);
-        List<NewsEntity> news = newsRepository.searchByText(text);
 
-        return new PageImpl<>(
-                news.stream()
-                        .map(newsMapper::newsToNewsInfoDTO)
-                        .collect(Collectors.toList()),
-                pageable,
-                news.size()
-        );
+        return newsRepository.searchByText(text, pageable)
+                .map(newsMapper::newsToNewsInfoDTO);
     }
 }

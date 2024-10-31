@@ -15,6 +15,7 @@ public interface NewsMapper {
     @Mapping(source = "comments", target = "commentsCount", qualifiedByName = "mapCommentsToCount")
     NewsInfoDTO newsToNewsInfoDTO(NewsEntity newsEntity);
 
+    @Mapping(target = "comments", expression = "java(new java.util.ArrayList<>())")
     NewsEntity newsCreateDTOToNews(NewsCreateDTO newsCreateDTO);
 
     void updateNewsFromDTO(@MappingTarget NewsEntity newsEntity, NewsUpdateDTO newsUpdateDTO);

@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.clevertec.clientapi.dto.CommentCreateDTO;
 import ru.clevertec.clientapi.dto.CommentInfoDTO;
 import ru.clevertec.clientapi.dto.CommentUpdateDTO;
-import ru.clevertec.clientapi.entity.NewsEntity;
 import ru.clevertec.clientapi.service.information.comment.CommentInformationService;
-import ru.clevertec.clientapi.service.information.news.NewsInformationService;
 import ru.clevertec.clientapi.service.management.comment.CommentManagementService;
 
 @RestController
@@ -18,13 +16,12 @@ import ru.clevertec.clientapi.service.management.comment.CommentManagementServic
 public class CommentController {
     private final CommentInformationService commentInformationService;
     private final CommentManagementService commentManagementService;
-    private final NewsInformationService newsInformationService;
 
     @GetMapping("/news/{newsId}/comments")
     public Page<CommentInfoDTO> getNewsComments(
             @PathVariable Long newsId,
-            @RequestParam int size,
-            @RequestParam int page
+            @RequestParam(required = false, defaultValue = "10") int size,
+            @RequestParam(required = false, defaultValue = "0") int page
     ) {
         return commentInformationService.getComments(newsId, size, page);
     }
@@ -34,7 +31,7 @@ public class CommentController {
             @PathVariable Long newsId,
             @PathVariable Long commentId
     ) {
-        return commentInformationService.getCommentInfoById(commentId);
+        return commentInformationService.getCommentInfoById(commentId, newsId);
     }
 
     @GetMapping("/comments/search")
@@ -52,8 +49,7 @@ public class CommentController {
             @PathVariable Long newsId,
             @RequestBody CommentCreateDTO commentCreateDTO
     ) {
-        NewsEntity news = newsInformationService.getNewsById(newsId);
-        return commentManagementService.createComment(news, commentCreateDTO);
+        return commentManagementService.createComment(newsId, commentCreateDTO);
     }
 
     @PutMapping("/news/{newsId}/comments/{commentId}")
@@ -62,7 +58,7 @@ public class CommentController {
             @PathVariable Long commentId,
             @RequestBody CommentUpdateDTO commentUpdateDTO
     ) {
-        return commentManagementService.updateComment(commentId, commentUpdateDTO);
+        return commentManagementService.updateComment(commentId, newsId, commentUpdateDTO);
     }
 
     @PatchMapping("/news/{newsId}/comments/{commentId}")
@@ -71,7 +67,7 @@ public class CommentController {
             @PathVariable Long commentId,
             @RequestBody CommentUpdateDTO commentUpdateDTO
     ) {
-        return commentManagementService.patchComment(commentId, commentUpdateDTO);
+        return commentManagementService.patchComment(commentId, newsId, commentUpdateDTO);
     }
 
     @DeleteMapping("/news/{newsId}/comments/{commentId}")
@@ -80,6 +76,6 @@ public class CommentController {
             @PathVariable Long newsId,
             @PathVariable Long commentId
     ) {
-        commentManagementService.deleteCommentById(commentId);
+        commentManagementService.deleteCommentById(commentId, newsId);
     }
 }

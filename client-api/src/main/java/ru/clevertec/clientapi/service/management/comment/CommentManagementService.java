@@ -3,14 +3,13 @@ package ru.clevertec.clientapi.service.management.comment;
 import ru.clevertec.clientapi.dto.CommentCreateDTO;
 import ru.clevertec.clientapi.dto.CommentInfoDTO;
 import ru.clevertec.clientapi.dto.CommentUpdateDTO;
-import ru.clevertec.clientapi.entity.NewsEntity;
 
 public interface CommentManagementService {
-    CommentInfoDTO createComment(NewsEntity news, CommentCreateDTO commentCreateDTO);
+    CommentInfoDTO createComment(Long newsId, CommentCreateDTO commentCreateDTO);
 
-    CommentInfoDTO updateComment(Long commentId, CommentUpdateDTO commentUpdateDTO);
+    CommentInfoDTO updateComment(Long commentId, Long newsId, CommentUpdateDTO commentUpdateDTO);
 
-    CommentInfoDTO patchComment(Long commentId, CommentUpdateDTO commentUpdateDTO);
+    CommentInfoDTO patchComment(Long commentId, Long newsId, CommentUpdateDTO commentUpdateDTO);
 
-    void deleteCommentById(Long commentId);
+    void deleteCommentById(Long commentId, Long newsId);
 }
