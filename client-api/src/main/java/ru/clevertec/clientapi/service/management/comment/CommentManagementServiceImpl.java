@@ -2,9 +2,10 @@ package ru.clevertec.clientapi.service.management.comment;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.clevertec.clientapi.dto.CommentCreateDTO;
-import ru.clevertec.clientapi.dto.CommentInfoDTO;
-import ru.clevertec.clientapi.dto.CommentUpdateDTO;
+import ru.clevertec.clientapi.dto.comment.CommentCreateDTO;
+import ru.clevertec.clientapi.dto.comment.CommentInfoDTO;
+import ru.clevertec.clientapi.dto.comment.CommentPatchDTO;
+import ru.clevertec.clientapi.dto.comment.CommentUpdateDTO;
 import ru.clevertec.clientapi.entity.CommentEntity;
 import ru.clevertec.clientapi.entity.NewsEntity;
 import ru.clevertec.clientapi.exception.CommentNotFoundException;
@@ -37,9 +38,9 @@ public class CommentManagementServiceImpl implements CommentManagementService {
     }
 
     @Override
-    public CommentInfoDTO patchComment(Long commentId, Long newsId, CommentUpdateDTO commentUpdateDTO) {
+    public CommentInfoDTO patchComment(Long commentId, Long newsId, CommentPatchDTO commentPatchDTO) {
         CommentEntity comment = validateCommentAndGet(commentId, newsId);
-        commentMapper.patchCommentFromDTO(comment, commentUpdateDTO);
+        commentMapper.patchCommentFromDTO(comment, commentPatchDTO);
 
         return commentMapper.commentToCommentInfoDTO(commentRepository.save(comment));
     }

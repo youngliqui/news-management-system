@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.clevertec.clientapi.dto.CommentInfoDTO;
+import ru.clevertec.clientapi.dto.comment.CommentInfoDTO;
 import ru.clevertec.clientapi.entity.CommentEntity;
 import ru.clevertec.clientapi.entity.NewsEntity;
 import ru.clevertec.clientapi.exception.CommentNotFoundException;
@@ -41,10 +41,10 @@ public class CommentInformationServiceImpl implements CommentInformationService 
     }
 
     @Override
-    public Page<CommentInfoDTO> fullTextSearch(String text, int size, int page) {
+    public Page<CommentInfoDTO> searchComments(String username, String text, int size, int page) {
         Pageable pageable = PageRequest.of(page, size);
 
-        return commentRepository.searchByText(text, pageable)
+        return commentRepository.searchByParameters(username, text, pageable)
                 .map(commentMapper::commentToCommentInfoDTO);
     }
 

@@ -1,9 +1,10 @@
 package ru.clevertec.clientapi.mapper;
 
 import org.mapstruct.*;
-import ru.clevertec.clientapi.dto.CommentCreateDTO;
-import ru.clevertec.clientapi.dto.CommentInfoDTO;
-import ru.clevertec.clientapi.dto.CommentUpdateDTO;
+import ru.clevertec.clientapi.dto.comment.CommentCreateDTO;
+import ru.clevertec.clientapi.dto.comment.CommentInfoDTO;
+import ru.clevertec.clientapi.dto.comment.CommentPatchDTO;
+import ru.clevertec.clientapi.dto.comment.CommentUpdateDTO;
 import ru.clevertec.clientapi.entity.CommentEntity;
 import ru.clevertec.clientapi.entity.NewsEntity;
 
@@ -24,5 +25,5 @@ public interface CommentMapper {
             nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
             nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS
     )
-    void patchCommentFromDTO(@MappingTarget CommentEntity comment, CommentUpdateDTO commentUpdateDTO);
+    void patchCommentFromDTO(@MappingTarget CommentEntity comment, CommentPatchDTO commentPatchDTO);
 }

@@ -1,4 +1,4 @@
-package ru.clevertec.clientapi.dto;
+package ru.clevertec.clientapi.dto.news;
 
 import lombok.Getter;
 import lombok.Setter;

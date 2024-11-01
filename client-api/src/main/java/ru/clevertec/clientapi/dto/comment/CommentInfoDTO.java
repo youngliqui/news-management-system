@@ -1,4 +1,4 @@
-package ru.clevertec.clientapi.dto;
+package ru.clevertec.clientapi.dto.comment;
 
 import lombok.Getter;
 import lombok.Setter;

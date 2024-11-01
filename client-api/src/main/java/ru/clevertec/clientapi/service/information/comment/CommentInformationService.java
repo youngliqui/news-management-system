@@ -1,7 +1,7 @@
 package ru.clevertec.clientapi.service.information.comment;
 
 import org.springframework.data.domain.Page;
-import ru.clevertec.clientapi.dto.CommentInfoDTO;
+import ru.clevertec.clientapi.dto.comment.CommentInfoDTO;
 import ru.clevertec.clientapi.entity.CommentEntity;
 
 public interface CommentInformationService {
@@ -11,5 +11,5 @@ public interface CommentInformationService {
 
     CommentInfoDTO getCommentInfoById(Long commentId, Long newsId);
 
-    Page<CommentInfoDTO> fullTextSearch(String text, int size, int page);
+    Page<CommentInfoDTO> searchComments(String username, String text, int size, int page);
 }

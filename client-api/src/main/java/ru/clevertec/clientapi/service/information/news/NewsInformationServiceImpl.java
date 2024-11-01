@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.clevertec.clientapi.dto.NewsInfoDTO;
+import ru.clevertec.clientapi.dto.news.NewsInfoDTO;
 import ru.clevertec.clientapi.entity.NewsEntity;
 import ru.clevertec.clientapi.exception.NewsNotFoundException;
 import ru.clevertec.clientapi.mapper.NewsMapper;
@@ -39,10 +39,10 @@ public class NewsInformationServiceImpl implements NewsInformationService {
     }
 
     @Override
-    public Page<NewsInfoDTO> fullTextSearch(String text, int size, int page) {
+    public Page<NewsInfoDTO> searchNews(String title, String text, int size, int page) {
         Pageable pageable = PageRequest.of(page, size);
 
-        return newsRepository.searchByText(text, pageable)
+        return newsRepository.searchByParameters(title, text, pageable)
                 .map(newsMapper::newsToNewsInfoDTO);
     }
 }

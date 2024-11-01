@@ -1,7 +1,7 @@
 package ru.clevertec.clientapi.service.information.news;
 
 import org.springframework.data.domain.Page;
-import ru.clevertec.clientapi.dto.NewsInfoDTO;
+import ru.clevertec.clientapi.dto.news.NewsInfoDTO;
 import ru.clevertec.clientapi.entity.NewsEntity;
 
 public interface NewsInformationService {
@@ -11,5 +11,5 @@ public interface NewsInformationService {
 
     NewsInfoDTO getNewsInfoById(Long newsId);
 
-    Page<NewsInfoDTO> fullTextSearch(String text, int size, int page);
+    Page<NewsInfoDTO> searchNews(String title, String text, int size, int page);
 }

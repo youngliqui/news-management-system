@@ -2,9 +2,10 @@ package ru.clevertec.clientapi.service.management.news;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.clevertec.clientapi.dto.NewsCreateDTO;
-import ru.clevertec.clientapi.dto.NewsInfoDTO;
-import ru.clevertec.clientapi.dto.NewsUpdateDTO;
+import ru.clevertec.clientapi.dto.news.NewsCreateDTO;
+import ru.clevertec.clientapi.dto.news.NewsInfoDTO;
+import ru.clevertec.clientapi.dto.news.NewsPatchDTO;
+import ru.clevertec.clientapi.dto.news.NewsUpdateDTO;
 import ru.clevertec.clientapi.entity.NewsEntity;
 import ru.clevertec.clientapi.exception.NewsNotFoundException;
 import ru.clevertec.clientapi.mapper.NewsMapper;
@@ -32,9 +33,9 @@ public class NewsManagementServiceImpl implements NewsManagementService {
     }
 
     @Override
-    public NewsInfoDTO patchNews(Long newsId, NewsUpdateDTO newsUpdateDTO) {
+    public NewsInfoDTO patchNews(Long newsId, NewsPatchDTO newsPatchDTO) {
         NewsEntity newsEntity = getNewsById(newsId);
-        newsMapper.patchNewsFromDTO(newsEntity, newsUpdateDTO);
+        newsMapper.patchNewsFromDTO(newsEntity, newsPatchDTO);
 
         return newsMapper.newsToNewsInfoDTO(newsRepository.save(newsEntity));
     }

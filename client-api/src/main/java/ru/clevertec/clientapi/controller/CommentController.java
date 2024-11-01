@@ -1,12 +1,14 @@
 package ru.clevertec.clientapi.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.clevertec.clientapi.dto.CommentCreateDTO;
-import ru.clevertec.clientapi.dto.CommentInfoDTO;
-import ru.clevertec.clientapi.dto.CommentUpdateDTO;
+import ru.clevertec.clientapi.dto.comment.CommentCreateDTO;
+import ru.clevertec.clientapi.dto.comment.CommentInfoDTO;
+import ru.clevertec.clientapi.dto.comment.CommentPatchDTO;
+import ru.clevertec.clientapi.dto.comment.CommentUpdateDTO;
 import ru.clevertec.clientapi.service.information.comment.CommentInformationService;
 import ru.clevertec.clientapi.service.management.comment.CommentManagementService;
 
@@ -36,18 +38,19 @@ public class CommentController {
 
     @GetMapping("/comments/search")
     public Page<CommentInfoDTO> fullTextSearch(
-            @RequestParam String text,
+            @RequestParam(required = false) String username,
+            @RequestParam(required = false) String text,
             @RequestParam(required = false, defaultValue = "10") int size,
             @RequestParam(required = false, defaultValue = "0") int page
     ) {
-        return commentInformationService.fullTextSearch(text, size, page);
+        return commentInformationService.searchComments(username, text, size, page);
     }
 
     @PostMapping("/news/{newsId}/comments")
     @ResponseStatus(HttpStatus.CREATED)
     public CommentInfoDTO createComment(
             @PathVariable Long newsId,
-            @RequestBody CommentCreateDTO commentCreateDTO
+            @Valid @RequestBody CommentCreateDTO commentCreateDTO
     ) {
         return commentManagementService.createComment(newsId, commentCreateDTO);
     }
@@ -56,7 +59,7 @@ public class CommentController {
     public CommentInfoDTO updateComment(
             @PathVariable Long newsId,
             @PathVariable Long commentId,
-            @RequestBody CommentUpdateDTO commentUpdateDTO
+            @Valid @RequestBody CommentUpdateDTO commentUpdateDTO
     ) {
         return commentManagementService.updateComment(commentId, newsId, commentUpdateDTO);
     }
@@ -65,9 +68,9 @@ public class CommentController {
     public CommentInfoDTO patchComment(
             @PathVariable Long newsId,
             @PathVariable Long commentId,
-            @RequestBody CommentUpdateDTO commentUpdateDTO
+            @Valid @RequestBody CommentPatchDTO commentPatchDTO
     ) {
-        return commentManagementService.patchComment(commentId, newsId, commentUpdateDTO);
+        return commentManagementService.patchComment(commentId, newsId, commentPatchDTO);
     }
 
     @DeleteMapping("/news/{newsId}/comments/{commentId}")

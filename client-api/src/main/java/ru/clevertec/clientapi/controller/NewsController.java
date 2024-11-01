@@ -1,12 +1,14 @@
 package ru.clevertec.clientapi.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.clevertec.clientapi.dto.NewsCreateDTO;
-import ru.clevertec.clientapi.dto.NewsInfoDTO;
-import ru.clevertec.clientapi.dto.NewsUpdateDTO;
+import ru.clevertec.clientapi.dto.news.NewsCreateDTO;
+import ru.clevertec.clientapi.dto.news.NewsInfoDTO;
+import ru.clevertec.clientapi.dto.news.NewsPatchDTO;
+import ru.clevertec.clientapi.dto.news.NewsUpdateDTO;
 import ru.clevertec.clientapi.service.information.news.NewsInformationService;
 import ru.clevertec.clientapi.service.management.news.NewsManagementService;
 
@@ -34,17 +36,18 @@ public class NewsController {
 
     @GetMapping("/search")
     public Page<NewsInfoDTO> search(
-            @RequestParam String text,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String text,
             @RequestParam(required = false, defaultValue = "10") int size,
             @RequestParam(required = false, defaultValue = "0") int page
     ) {
-        return newsInformationService.fullTextSearch(text, size, page);
+        return newsInformationService.searchNews(title, text, size, page);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public NewsInfoDTO createNews(
-            @RequestBody NewsCreateDTO newsCreateDTO
+            @Valid @RequestBody NewsCreateDTO newsCreateDTO
     ) {
         return newsManagementService.createNews(newsCreateDTO);
     }
@@ -52,7 +55,7 @@ public class NewsController {
     @PutMapping("/{newsId}")
     public NewsInfoDTO updateNews(
             @PathVariable Long newsId,
-            @RequestBody NewsUpdateDTO newsUpdateDTO
+            @Valid @RequestBody NewsUpdateDTO newsUpdateDTO
     ) {
         return newsManagementService.updateNews(newsId, newsUpdateDTO);
     }
@@ -60,9 +63,9 @@ public class NewsController {
     @PatchMapping("/{newsId}")
     public NewsInfoDTO patchNews(
             @PathVariable Long newsId,
-            @RequestBody NewsUpdateDTO newsUpdateDTO
+            @Valid @RequestBody NewsPatchDTO newsPatchDTO
     ) {
-        return newsManagementService.patchNews(newsId, newsUpdateDTO);
+        return newsManagementService.patchNews(newsId, newsPatchDTO);
     }
 
     @DeleteMapping("/{newsId}")
