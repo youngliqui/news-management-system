@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import ru.clevertec.clientapi.cache.CacheManager;
 import ru.clevertec.clientapi.dto.comment.CommentInfoDTO;
 import ru.clevertec.clientapi.entity.CommentEntity;
 import ru.clevertec.clientapi.entity.NewsEntity;
@@ -13,12 +14,15 @@ import ru.clevertec.clientapi.mapper.CommentMapper;
 import ru.clevertec.clientapi.repository.CommentRepository;
 import ru.clevertec.clientapi.service.information.news.NewsInformationService;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class CommentInformationServiceImpl implements CommentInformationService {
     private final CommentRepository commentRepository;
     private final CommentMapper commentMapper;
     private final NewsInformationService newsInformationService;
+    private final CacheManager<Long, CommentEntity> cacheManager;
 
     @Override
     public Page<CommentInfoDTO> getComments(Long newsId, int size, int page) {
@@ -30,9 +34,10 @@ public class CommentInformationServiceImpl implements CommentInformationService 
 
     @Override
     public CommentEntity getCommentById(Long commentId) {
-        return commentRepository.findById(commentId)
-                .orElseThrow(() ->
-                        new CommentNotFoundException("Comment with id=" + commentId + " was not found"));
+        return Optional.ofNullable(cacheManager.get(commentId))
+                .orElseGet(() -> commentRepository.findById(commentId)
+                        .orElseThrow(() ->
+                                new CommentNotFoundException("Comment with id=" + commentId + " was not found")));
     }
 
     @Override

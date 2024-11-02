@@ -5,17 +5,21 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import ru.clevertec.clientapi.cache.CacheManager;
 import ru.clevertec.clientapi.dto.news.NewsInfoDTO;
 import ru.clevertec.clientapi.entity.NewsEntity;
 import ru.clevertec.clientapi.exception.NewsNotFoundException;
 import ru.clevertec.clientapi.mapper.NewsMapper;
 import ru.clevertec.clientapi.repository.NewsRepository;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class NewsInformationServiceImpl implements NewsInformationService {
     private final NewsRepository newsRepository;
     private final NewsMapper newsMapper;
+    private final CacheManager<Long, NewsEntity> cacheManager;
 
 
     @Override
@@ -28,9 +32,10 @@ public class NewsInformationServiceImpl implements NewsInformationService {
 
     @Override
     public NewsEntity getNewsById(Long newsId) {
-        return newsRepository.findById(newsId)
-                .orElseThrow(() ->
-                        new NewsNotFoundException("News with id=" + newsId + " was not found"));
+        return Optional.ofNullable(cacheManager.get(newsId))
+                .orElseGet(() -> newsRepository.findById(newsId)
+                        .orElseThrow(() ->
+                                new NewsNotFoundException("News with id=" + newsId + " was not found")));
     }
 
     @Override
