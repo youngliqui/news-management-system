@@ -3,9 +3,11 @@ package ru.clevertec.clientapi.dto.comment;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class CommentPatchDTO {
     private String username;
 

@@ -12,6 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "comments")
 @Entity
 @Table(name = "news")
 public class NewsEntity {

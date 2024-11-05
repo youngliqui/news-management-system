@@ -63,8 +63,13 @@ public class NewsManagementServiceImpl implements NewsManagementService {
 
     private NewsEntity getNewsById(Long newsId) {
         return Optional.ofNullable(cacheManager.get(newsId))
-                .orElseGet(() -> newsRepository.findById(newsId)
-                        .orElseThrow(() ->
-                                new NewsNotFoundException("News with id=" + newsId + " was not found")));
+                .orElseGet(() -> {
+                    NewsEntity news = newsRepository.findById(newsId)
+                            .orElseThrow(() ->
+                                    new NewsNotFoundException("News with id=" + newsId + " was not found"));
+                    cacheManager.put(newsId, news);
+
+                    return news;
+                });
     }
 }

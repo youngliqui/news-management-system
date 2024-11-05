@@ -10,10 +10,11 @@ import ru.clevertec.clientapi.entity.NewsEntity;
 
 @Repository
 public interface NewsRepository extends JpaRepository<NewsEntity, Long> {
-    @Query("SELECT n FROM NewsEntity n WHERE " +
-            "(:title IS NULL OR LOWER(n.title) LIKE LOWER(CONCAT('%', :title, '%'))) AND " +
-            "(:text IS NULL OR LOWER(n.text) LIKE LOWER(CONCAT('%', :text, '%')))")
-    Page<NewsEntity> searchByParameters(@Param("title") String title,
-                                        @Param("text") String text,
-                                        Pageable pageable);
+//    @Query("SELECT n FROM NewsEntity n WHERE " +
+//            "to_tsvector('english', n.title || ' ' || n.text) @@ to_tsquery(:searchText)")
+//    Page<NewsEntity> searchByFullText(@Param("searchText") String searchText, Pageable pageable);
+
+
+    @Query("SELECT n FROM NewsEntity n WHERE LOWER(n.title) LIKE LOWER(CONCAT('%', :text, '%')) OR LOWER(n.text) LIKE LOWER(CONCAT('%', :text, '%'))")
+    Page<NewsEntity> searchByFullText(@Param("text") String text, Pageable pageable);
 }

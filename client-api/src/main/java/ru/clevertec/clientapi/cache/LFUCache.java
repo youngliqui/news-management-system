@@ -2,6 +2,7 @@ package ru.clevertec.clientapi.cache;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class LFUCache<K, V> implements CacheManager<K, V> {
     private final int maxSize;
@@ -41,20 +42,13 @@ public class LFUCache<K, V> implements CacheManager<K, V> {
 
 
     private void removeLeastFrequentlyUsed() {
-        K leastUsedKey = null;
-        int minFrequency = Integer.MAX_VALUE;
+        Optional<K> leastUsedKey = frequencyMap.entrySet().stream()
+                .min(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey);
 
-        for (K key : frequencyMap.keySet()) {
-            int frequency = frequencyMap.get(key);
-            if (frequency < minFrequency) {
-                minFrequency = frequency;
-                leastUsedKey = key;
-            }
-        }
-
-        if (leastUsedKey != null) {
-            cache.remove(leastUsedKey);
-            frequencyMap.remove(leastUsedKey);
-        }
+        leastUsedKey.ifPresent(key -> {
+            cache.remove(key);
+            frequencyMap.remove(key);
+        });
     }
 }

@@ -33,9 +33,14 @@ public class NewsInformationServiceImpl implements NewsInformationService {
     @Override
     public NewsEntity getNewsById(Long newsId) {
         return Optional.ofNullable(cacheManager.get(newsId))
-                .orElseGet(() -> newsRepository.findById(newsId)
-                        .orElseThrow(() ->
-                                new NewsNotFoundException("News with id=" + newsId + " was not found")));
+                .orElseGet(() -> {
+                    NewsEntity news = newsRepository.findById(newsId)
+                            .orElseThrow(() ->
+                                    new NewsNotFoundException("News with id=" + newsId + " was not found"));
+                    cacheManager.put(newsId, news);
+
+                    return news;
+                });
     }
 
     @Override
@@ -46,8 +51,21 @@ public class NewsInformationServiceImpl implements NewsInformationService {
     @Override
     public Page<NewsInfoDTO> searchNews(String title, String text, int size, int page) {
         Pageable pageable = PageRequest.of(page, size);
+        String searchText = buildSearchQuery(title, text);
 
-        return newsRepository.searchByParameters(title, text, pageable)
+        return newsRepository.searchByFullText(searchText, pageable)
                 .map(newsMapper::newsToNewsInfoDTO);
+    }
+
+    private String buildSearchQuery(String title, String text) {
+        StringBuilder queryBuilder = new StringBuilder();
+        if (title != null && !title.isEmpty()) {
+            queryBuilder.append(title).append(":*");
+        }
+        if (text != null && !text.isEmpty()) {
+            queryBuilder.append(text).append(":*");
+        }
+
+        return queryBuilder.toString().trim();
     }
 }

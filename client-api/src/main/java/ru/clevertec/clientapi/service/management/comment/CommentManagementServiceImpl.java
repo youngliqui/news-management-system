@@ -68,9 +68,14 @@ public class CommentManagementServiceImpl implements CommentManagementService {
 
     private CommentEntity getCommentById(Long commentId) {
         return Optional.ofNullable(cacheManager.get(commentId))
-                .orElseGet(() -> commentRepository.findById(commentId)
-                        .orElseThrow(() ->
-                                new CommentNotFoundException("Comment with id=" + commentId + " was not found")));
+                .orElseGet(() -> {
+                    CommentEntity comment = commentRepository.findById(commentId)
+                            .orElseThrow(() ->
+                                    new CommentNotFoundException("Comment with id=" + commentId + " was not found"));
+                    cacheManager.put(commentId, comment);
+
+                    return comment;
+                });
     }
 
     private CommentEntity validateCommentAndGet(Long commentId, Long newsId) {

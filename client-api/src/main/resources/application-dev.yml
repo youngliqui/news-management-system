@@ -7,6 +7,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  output:
+    ansi:
+      enabled: always
 
 server:
   port: 8080
@@ -14,3 +17,13 @@ server:
 cache:
   algorithm: LRU
   maxSize: 100
+
+logging:
+  level:
+    root: info
+    ru.clevertec.clientapi.service: DEBUG
+    ru.clevertec.clientapi.repository: DEBUG
+  file:
+    name: client-api/src/main/resources/logs/application.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"

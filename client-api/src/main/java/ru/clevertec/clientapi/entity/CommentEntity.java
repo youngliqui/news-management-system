@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "news")
 @Entity
 @Table(name = "comments")
 public class CommentEntity {
