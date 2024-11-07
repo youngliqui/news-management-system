@@ -55,7 +55,7 @@ subprojects {
      * Test
      */
     dependencies {
-        testImplementation group: 'org.springframework.security', name: 'spring-security-test'
-        testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+        testImplementation 'org.springframework.security:spring-security-test'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 }

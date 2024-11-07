@@ -36,12 +36,11 @@ public class NewsController {
 
     @GetMapping("/search")
     public Page<NewsInfoDTO> search(
-            @RequestParam(required = false) String title,
-            @RequestParam(required = false) String text,
+            @RequestParam String query,
             @RequestParam(required = false, defaultValue = "10") int size,
             @RequestParam(required = false, defaultValue = "0") int page
     ) {
-        return newsInformationService.searchNews(title, text, size, page);
+        return newsInformationService.searchNews(query, size, page);
     }
 
     @PostMapping

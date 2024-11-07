@@ -11,5 +11,5 @@ public interface CommentInformationService {
 
     CommentInfoDTO getCommentInfoById(Long commentId, Long newsId);
 
-    Page<CommentInfoDTO> searchComments(String username, String text, int size, int page);
+    Page<CommentInfoDTO> searchComments(String query, int size, int page);
 }

@@ -11,5 +11,5 @@ public interface NewsInformationService {
 
     NewsInfoDTO getNewsInfoById(Long newsId);
 
-    Page<NewsInfoDTO> searchNews(String title, String text, int size, int page);
+    Page<NewsInfoDTO> searchNews(String query, int size, int page);
 }

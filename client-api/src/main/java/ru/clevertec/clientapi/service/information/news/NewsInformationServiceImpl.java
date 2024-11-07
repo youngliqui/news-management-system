@@ -49,23 +49,10 @@ public class NewsInformationServiceImpl implements NewsInformationService {
     }
 
     @Override
-    public Page<NewsInfoDTO> searchNews(String title, String text, int size, int page) {
+    public Page<NewsInfoDTO> searchNews(String query, int size, int page) {
         Pageable pageable = PageRequest.of(page, size);
-        String searchText = buildSearchQuery(title, text);
 
-        return newsRepository.searchByFullText(searchText, pageable)
+        return newsRepository.searchByTitleOrText(query, pageable)
                 .map(newsMapper::newsToNewsInfoDTO);
-    }
-
-    private String buildSearchQuery(String title, String text) {
-        StringBuilder queryBuilder = new StringBuilder();
-        if (title != null && !title.isEmpty()) {
-            queryBuilder.append(title).append(":*");
-        }
-        if (text != null && !text.isEmpty()) {
-            queryBuilder.append(text).append(":*");
-        }
-
-        return queryBuilder.toString().trim();
     }
 }

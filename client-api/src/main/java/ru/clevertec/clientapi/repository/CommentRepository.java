@@ -10,12 +10,8 @@ import ru.clevertec.clientapi.entity.CommentEntity;
 
 @Repository
 public interface CommentRepository extends JpaRepository<CommentEntity, Long> {
-    @Query("SELECT c FROM CommentEntity c WHERE " +
-            "(:username IS NULL OR LOWER(c.username) LIKE LOWER(CONCAT('%', :username, '%'))) AND " +
-            "(:text IS NULL OR LOWER(c.text) LIKE LOWER(CONCAT('%', :text, '%')))")
-    Page<CommentEntity> searchByParameters(@Param("username") String username,
-                                           @Param("text") String text,
-                                           Pageable pageable);
+    @Query(value = "SELECT * FROM comments c WHERE c.username ILIKE %:query% OR c.text ILIKE %:query%", nativeQuery = true)
+    Page<CommentEntity> searchByUsernameOrText(@Param("query") String query, Pageable pageable);
 
     Page<CommentEntity> findAllByNews_Id(Long newsId, Pageable pageable);
 }

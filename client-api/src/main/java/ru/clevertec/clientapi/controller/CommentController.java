@@ -38,12 +38,11 @@ public class CommentController {
 
     @GetMapping("/comments/search")
     public Page<CommentInfoDTO> fullTextSearch(
-            @RequestParam(required = false) String username,
-            @RequestParam(required = false) String text,
+            @RequestParam String query,
             @RequestParam(required = false, defaultValue = "10") int size,
             @RequestParam(required = false, defaultValue = "0") int page
     ) {
-        return commentInformationService.searchComments(username, text, size, page);
+        return commentInformationService.searchComments(query, size, page);
     }
 
     @PostMapping("/news/{newsId}/comments")

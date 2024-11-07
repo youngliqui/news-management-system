@@ -51,10 +51,10 @@ public class CommentInformationServiceImpl implements CommentInformationService 
     }
 
     @Override
-    public Page<CommentInfoDTO> searchComments(String username, String text, int size, int page) {
+    public Page<CommentInfoDTO> searchComments(String query, int size, int page) {
         Pageable pageable = PageRequest.of(page, size);
 
-        return commentRepository.searchByParameters(username, text, pageable)
+        return commentRepository.searchByUsernameOrText(query, pageable)
                 .map(commentMapper::commentToCommentInfoDTO);
     }
 
