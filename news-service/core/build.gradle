@@ -1,0 +1,49 @@
+plugins {
+    id 'org.liquibase.gradle' version '2.2.0'
+}
+
+bootJar {
+    mainClass = 'ru.clevertec.core.CoreApplication'
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << '-parameters'
+}
+
+/**
+ * Submodules import sample
+ */
+dependencies {
+    implementation project(':news-service:common')
+}
+
+/**
+ * Spring
+ */
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+}
+
+/**
+ * Mapstruct
+ */
+dependencies {
+    implementation 'org.mapstruct:mapstruct:1.6.2'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.2'
+}
+
+/**
+ * Liquibase
+ */
+dependencies {
+    implementation 'org.liquibase:liquibase-core'
+}
+
+/**
+ * Postgres
+ */
+dependencies {
+    runtimeOnly 'org.postgresql:postgresql'
+}
+

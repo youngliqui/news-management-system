@@ -1,3 +1,3 @@
 rootProject.name = 'news-management-system'
 
-include 'client-api'
+include 'news-service:api', 'news-service:core', 'news-service:common'

@@ -34,6 +34,7 @@ out/
 /.nb-gradle/
 
 ### VS Code ###
-.vscode/
+.vscode
 
-client-api/pgdata
+news-service/core/pgdata
+/logs

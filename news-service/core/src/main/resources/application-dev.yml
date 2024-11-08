@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5430/news_service_db
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  output:
+    ansi:
+      enabled: always
+
+server:
+  port: 8081
+
+cache:
+  algorithm: LRU
+  maxSize: 100
+
+logging:
+  level:
+    root: info
+    ru.clevertec.core.service: DEBUG
+    ru.clevertec.core.repository: DEBUG
+  file:
+    name: logs/application.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"
