@@ -2,10 +2,6 @@ plugins {
     id 'org.liquibase.gradle' version '2.2.0'
 }
 
-bootJar {
-    mainClass = 'ru.clevertec.core.CoreApplication'
-}
-
 tasks.withType(JavaCompile) {
     options.compilerArgs << '-parameters'
 }
