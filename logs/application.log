@@ -446,3 +446,75 @@ Caused by: java.io.EOFException: null
 2024-11-09T01:42:55.821+03:00  INFO 19952 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-11-09T01:42:55.824+03:00  INFO 19952 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-11-09T01:42:55.827+03:00  INFO 19952 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-09T11:51:49.310+03:00  INFO 21312 --- [main] ru.clevertec.NewsServiceApplication      : Starting NewsServiceApplication using Java 21.0.2 with PID 21312 (C:\Users\youngliqui\IdeaProjects\news-management-system\news-service\build\classes\java\main started by youngliqui in C:\Users\youngliqui\IdeaProjects\news-management-system)
+2024-11-09T11:51:49.317+03:00  INFO 21312 --- [main] ru.clevertec.NewsServiceApplication      : The following 1 profile is active: "dev"
+2024-11-09T11:51:51.294+03:00  INFO 21312 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-09T11:51:51.511+03:00  INFO 21312 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 197 ms. Found 2 JPA repository interfaces.
+2024-11-09T11:51:53.619+03:00  INFO 21312 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2024-11-09T11:51:53.661+03:00  INFO 21312 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-09T11:51:53.661+03:00  INFO 21312 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-09T11:51:53.811+03:00  INFO 21312 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-09T11:51:53.812+03:00  INFO 21312 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4360 ms
+2024-11-09T11:51:54.259+03:00  INFO 21312 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-09T11:51:54.992+03:00  INFO 21312 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3f866f50
+2024-11-09T11:51:54.998+03:00  INFO 21312 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-09T11:51:55.968+03:00  INFO 21312 --- [main] liquibase.database                       : Set default schema name to public
+2024-11-09T11:51:56.848+03:00  INFO 21312 --- [main] liquibase.changelog                      : Reading resource: db/changelog/migrations/v1.0_create-entity-tables.sql
+2024-11-09T11:51:56.868+03:00  INFO 21312 --- [main] liquibase.changelog                      : Reading resource: db/changelog/migrations/v1.1_add_news_and_comments.sql
+2024-11-09T11:51:56.874+03:00  INFO 21312 --- [main] liquibase.changelog                      : Reading resource: db/changelog/migrations/v1.2_add_indexes.sql
+2024-11-09T11:51:57.179+03:00  INFO 21312 --- [main] liquibase.changelog                      : Creating database history table with name: public.databasechangelog
+2024-11-09T11:51:57.542+03:00  INFO 21312 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2024-11-09T11:51:57.852+03:00  INFO 21312 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2024-11-09T11:51:57.856+03:00  INFO 21312 --- [main] liquibase.command                        : Using deploymentId: 1142317855
+2024-11-09T11:51:57.863+03:00  INFO 21312 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2024-11-09T11:51:57.898+03:00  INFO 21312 --- [main] liquibase.ui                             : Running Changeset: db/changelog/migrations/v1.0_create-entity-tables.sql::1::youngliqui
+2024-11-09T11:51:58.254+03:00  INFO 21312 --- [main] liquibase.changelog                      : Custom SQL executed
+2024-11-09T11:51:58.260+03:00  INFO 21312 --- [main] liquibase.changelog                      : ChangeSet db/changelog/migrations/v1.0_create-entity-tables.sql::1::youngliqui ran successfully in 357ms
+2024-11-09T11:51:58.287+03:00  INFO 21312 --- [main] liquibase.ui                             : Running Changeset: db/changelog/migrations/v1.1_add_news_and_comments.sql::raw::includeAll
+2024-11-09T11:51:58.414+03:00  INFO 21312 --- [main] liquibase.changelog                      : Custom SQL executed
+2024-11-09T11:51:58.420+03:00  INFO 21312 --- [main] liquibase.changelog                      : ChangeSet db/changelog/migrations/v1.1_add_news_and_comments.sql::raw::includeAll ran successfully in 133ms
+2024-11-09T11:51:58.429+03:00  INFO 21312 --- [main] liquibase.ui                             : Running Changeset: db/changelog/migrations/v1.2_add_indexes.sql::raw::includeAll
+2024-11-09T11:51:58.981+03:00  INFO 21312 --- [main] liquibase.changelog                      : Custom SQL executed
+2024-11-09T11:51:58.994+03:00  INFO 21312 --- [main] liquibase.changelog                      : ChangeSet db/changelog/migrations/v1.2_add_indexes.sql::raw::includeAll ran successfully in 563ms
+2024-11-09T11:51:59.017+03:00  INFO 21312 --- [main] liquibase.util                           : UPDATE SUMMARY
+2024-11-09T11:51:59.018+03:00  INFO 21312 --- [main] liquibase.util                           : Run:                          3
+2024-11-09T11:51:59.018+03:00  INFO 21312 --- [main] liquibase.util                           : Previously run:               0
+2024-11-09T11:51:59.018+03:00  INFO 21312 --- [main] liquibase.util                           : Filtered out:                 0
+2024-11-09T11:51:59.018+03:00  INFO 21312 --- [main] liquibase.util                           : -------------------------------
+2024-11-09T11:51:59.019+03:00  INFO 21312 --- [main] liquibase.util                           : Total change sets:            3
+2024-11-09T11:51:59.023+03:00  INFO 21312 --- [main] liquibase.util                           : Update summary generated
+2024-11-09T11:51:59.030+03:00  INFO 21312 --- [main] liquibase.command                        : Update command completed successfully.
+2024-11-09T11:51:59.031+03:00  INFO 21312 --- [main] liquibase.ui                             : Liquibase: Update has been successful. Rows affected: 223
+2024-11-09T11:51:59.043+03:00  INFO 21312 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2024-11-09T11:51:59.048+03:00  INFO 21312 --- [main] liquibase.command                        : Command execution complete
+2024-11-09T11:51:59.380+03:00  INFO 21312 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-09T11:51:59.616+03:00  INFO 21312 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-09T11:51:59.736+03:00  INFO 21312 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-09T11:52:00.800+03:00  INFO 21312 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-09T11:52:01.096+03:00  WARN 21312 --- [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-09T11:52:04.097+03:00  INFO 21312 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-09T11:52:04.106+03:00  INFO 21312 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T11:52:05.168+03:00  INFO 21312 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-09T11:52:05.944+03:00  WARN 21312 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-09T11:52:07.574+03:00  INFO 21312 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2024-11-09T11:52:07.591+03:00  INFO 21312 --- [main] ru.clevertec.NewsServiceApplication      : Started NewsServiceApplication in 19.68 seconds (process running for 21.638)
+2024-11-09T11:55:20.627+03:00  INFO 21312 --- [http-nio-8081-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09T11:55:20.628+03:00  INFO 21312 --- [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-09T11:55:20.630+03:00  INFO 21312 --- [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-11-09T11:55:20.797+03:00  INFO 21312 --- [http-nio-8081-exec-3] r.clevertec.common.aspect.LoggingAspect  : Entering Controller method: getNewsById with arguments: newsId: 13
+2024-11-09T11:55:20.798+03:00  INFO 21312 --- [http-nio-8081-exec-3] r.clevertec.common.aspect.LoggingAspect  : Entering Service method: getNewsInfoById with arguments: newsId: 13
+2024-11-09T11:55:20.805+03:00  INFO 21312 --- [http-nio-8081-exec-3] r.clevertec.common.aspect.LoggingAspect  : Entering Repository method: findById with arguments: id: 13
+2024-11-09T11:55:21.085+03:00  INFO 21312 --- [http-nio-8081-exec-3] r.clevertec.common.aspect.LoggingAspect  : Exiting Repository method: findById with result: Optional[NewsEntity(id=13, time=2024-11-09T11:51:58.329699, title=Экология: борьба с пластиковыми отходами, text=Организации по охране окружающей среды запускают новые инициативы по сокращению пластиковых отходов и популяризации переработки.)]
+2024-11-09T11:55:21.128+03:00  INFO 21312 --- [http-nio-8081-exec-3] r.clevertec.common.aspect.LoggingAspect  : Exiting Service method: getNewsInfoById with result: NewsInfoDTO(id=13, time=2024-11-09T11:51:58.329699, title=Экология: борьба с пластиковыми отходами, text=Организации по охране окружающей среды запускают новые инициативы по сокращению пластиковых отходов и популяризации переработки., commentsCount=10)
+2024-11-09T11:55:21.129+03:00  INFO 21312 --- [http-nio-8081-exec-3] r.clevertec.common.aspect.LoggingAspect  : Exiting Controller method: getNewsById with result: NewsInfoDTO(id=13, time=2024-11-09T11:51:58.329699, title=Экология: борьба с пластиковыми отходами, text=Организации по охране окружающей среды запускают новые инициативы по сокращению пластиковых отходов и популяризации переработки., commentsCount=10)
+2024-11-09T11:55:33.471+03:00  INFO 21312 --- [http-nio-8081-exec-2] r.clevertec.common.aspect.LoggingAspect  : Entering Controller method: getNewsById with arguments: newsId: 21
+2024-11-09T11:55:33.472+03:00  INFO 21312 --- [http-nio-8081-exec-2] r.clevertec.common.aspect.LoggingAspect  : Entering Service method: getNewsInfoById with arguments: newsId: 21
+2024-11-09T11:55:33.472+03:00  INFO 21312 --- [http-nio-8081-exec-2] r.clevertec.common.aspect.LoggingAspect  : Entering Repository method: findById with arguments: id: 21
+2024-11-09T11:55:33.482+03:00  INFO 21312 --- [http-nio-8081-exec-2] r.clevertec.common.aspect.LoggingAspect  : Exiting Repository method: findById with result: Optional.empty
+2024-11-09T11:57:04.607+03:00  INFO 21312 --- [http-nio-8081-exec-7] r.clevertec.common.aspect.LoggingAspect  : Entering Controller method: updateNews with arguments: newsId: 21, newsUpdateDTO: NewsUpdateDTO(title=100, text=100)
+2024-11-09T11:57:04.608+03:00  INFO 21312 --- [http-nio-8081-exec-7] r.clevertec.common.aspect.LoggingAspect  : Entering Service method: updateNews with arguments: newsId: 21, newsUpdateDTO: NewsUpdateDTO(title=100, text=100)
+2024-11-09T11:57:04.609+03:00  INFO 21312 --- [http-nio-8081-exec-7] r.clevertec.common.aspect.LoggingAspect  : Entering Repository method: findById with arguments: id: 21
+2024-11-09T11:57:04.618+03:00  INFO 21312 --- [http-nio-8081-exec-7] r.clevertec.common.aspect.LoggingAspect  : Exiting Repository method: findById with result: Optional.empty
+2024-11-09T11:57:22.007+03:00  INFO 21312 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-09T11:57:22.011+03:00  INFO 21312 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-09T11:57:22.018+03:00  INFO 21312 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

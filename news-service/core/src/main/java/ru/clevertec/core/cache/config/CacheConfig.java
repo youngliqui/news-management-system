@@ -1,10 +1,12 @@
-package ru.clevertec.core.cache;
+package ru.clevertec.core.cache.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import ru.clevertec.core.cache.CacheAlgorithm;
+import ru.clevertec.core.cache.CacheManager;
 import ru.clevertec.core.cache.factory.CacheManagerFactory;
 import ru.clevertec.core.cache.factory.LFUCacheFactory;
 import ru.clevertec.core.cache.factory.LRUCacheFactory;
