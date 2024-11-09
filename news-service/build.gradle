@@ -1,0 +1,8 @@
+dependencies {
+    implementation project(':news-service:api')
+    implementation project(':news-service:common')
+    implementation project(':news-service:core')
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+}
