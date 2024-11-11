@@ -5,15 +5,23 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import ru.clevertec.common.dto.news.NewsInfoDTO;
+import ru.clevertec.common.exception.NewsNotFoundException;
 import ru.clevertec.core.cache.CacheManager;
 import ru.clevertec.core.entity.NewsEntity;
 import ru.clevertec.core.mapper.NewsMapper;
 import ru.clevertec.core.repository.NewsRepository;
-import ru.clevertec.common.dto.news.NewsInfoDTO;
-import ru.clevertec.common.exception.NewsNotFoundException;
 
 import java.util.Optional;
 
+/**
+ * Реализация сервиса получения информации о новостях.
+ * <p>
+ * Этот класс реализует интерфейс {@link NewsInformationService} и предоставляет
+ * методы для получения и обработки информации о новостях,
+ * включая кэширование результатов.
+ * </p>
+ */
 @Service
 @RequiredArgsConstructor
 public class NewsInformationServiceImpl implements NewsInformationService {

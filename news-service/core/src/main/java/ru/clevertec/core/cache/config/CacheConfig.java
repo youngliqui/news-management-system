@@ -13,6 +13,13 @@ import ru.clevertec.core.cache.factory.LRUCacheFactory;
 import ru.clevertec.core.entity.CommentEntity;
 import ru.clevertec.core.entity.NewsEntity;
 
+/**
+ * Конфигурация кэша для приложения.
+ * <p>
+ * Этот класс настраивает менеджеры кэша для сущностей новостей и комментариев,
+ * используя указанный алгоритм кэширования (LFU или LRU) и максимальный размер кэша.
+ * </p>
+ */
 @Configuration
 @RequiredArgsConstructor
 public class CacheConfig {

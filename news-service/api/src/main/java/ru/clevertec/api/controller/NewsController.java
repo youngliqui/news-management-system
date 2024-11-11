@@ -1,5 +1,6 @@
 package ru.clevertec.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,14 +16,29 @@ import ru.clevertec.core.service.management.news.NewsManagementService;
 
 import java.util.List;
 
+/**
+ * Контроллер для управления новостями.
+ * <p>
+ * Этот контроллер предоставляет REST API для выполнения операций
+ * над новостями, включая создание, обновление, удаление и получение новостей.
+ * </p>
+ */
 @RestController
 @RequestMapping("/api/news")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearerAuth")
 public class NewsController {
     private final NewsInformationService newsInformationService;
     private final NewsManagementService newsManagementService;
     private final AccessControlService accessControlService;
 
+    /**
+     * Получить все новости с пагинацией.
+     *
+     * @param size количество новостей на странице
+     * @param page номер страницы
+     * @return страница новостей
+     */
     @GetMapping
     public Page<NewsInfoDTO> getAllNews(
             @RequestParam(required = false, defaultValue = "10") int size,
@@ -31,6 +47,12 @@ public class NewsController {
         return newsInformationService.getAll(size, page);
     }
 
+    /**
+     * Получить новость по её идентификатору.
+     *
+     * @param newsId идентификатор новости
+     * @return информация о новости
+     */
     @GetMapping("/{newsId}")
     public NewsInfoDTO getNewsById(
             @PathVariable Long newsId
@@ -38,6 +60,14 @@ public class NewsController {
         return newsInformationService.getNewsInfoById(newsId);
     }
 
+    /**
+     * Выполнить поиск новостей по запросу.
+     *
+     * @param query строка запроса для поиска
+     * @param size  количество новостей на странице
+     * @param page  номер страницы
+     * @return страница найденных новостей
+     */
     @GetMapping("/search")
     public Page<NewsInfoDTO> search(
             @RequestParam String query,
@@ -47,6 +77,13 @@ public class NewsController {
         return newsInformationService.searchNews(query, size, page);
     }
 
+    /**
+     * Создать новую новость.
+     *
+     * @param bearerToken   токен авторизации пользователя
+     * @param newsCreateDTO данные для создания новости
+     * @return созданная новость
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public NewsInfoDTO createNews(
@@ -58,6 +95,14 @@ public class NewsController {
         return newsManagementService.createNews(newsCreateDTO);
     }
 
+    /**
+     * Обновить существующую новость.
+     *
+     * @param bearerToken   токен авторизации пользователя
+     * @param newsId        идентификатор новости
+     * @param newsUpdateDTO данные для обновления новости
+     * @return обновленная новость
+     */
     @PutMapping("/{newsId}")
     public NewsInfoDTO updateNews(
             @RequestHeader("Authorization") String bearerToken,
@@ -69,6 +114,14 @@ public class NewsController {
         return newsManagementService.updateNews(newsId, newsUpdateDTO);
     }
 
+    /**
+     * Частично обновить существующую новость.
+     *
+     * @param bearerToken  токен авторизации пользователя
+     * @param newsId       идентификатор новости
+     * @param newsPatchDTO данные для частичного обновления новости
+     * @return обновленная новость после частичного изменения
+     */
     @PatchMapping("/{newsId}")
     public NewsInfoDTO patchNews(
             @RequestHeader("Authorization") String bearerToken,
@@ -80,6 +133,12 @@ public class NewsController {
         return newsManagementService.patchNews(newsId, newsPatchDTO);
     }
 
+    /**
+     * Удалить существующую новость.
+     *
+     * @param bearerToken токен авторизации пользователя
+     * @param newsId      идентификатор новости
+     */
     @DeleteMapping("/{newsId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteNews(

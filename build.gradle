@@ -58,4 +58,11 @@ subprojects {
         testImplementation 'org.springframework.security:spring-security-test'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
+
+    /**
+     * Spring doc
+     */
+    dependencies {
+        implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+    }
 }
