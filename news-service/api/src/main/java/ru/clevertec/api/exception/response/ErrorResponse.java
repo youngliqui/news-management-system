@@ -1,4 +1,4 @@
-package ru.clevertec.api.exception;
+package ru.clevertec.api.exception.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,12 +1,17 @@
-package ru.clevertec.api.exception;
+package ru.clevertec.api.exception.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import ru.clevertec.api.exception.response.ErrorResponse;
+import ru.clevertec.api.feign_client.exception.AccessDeniedException;
+import ru.clevertec.api.feign_client.exception.InvalidTokenException;
+import ru.clevertec.api.feign_client.exception.NotFoundException;
 import ru.clevertec.common.exception.CommentNotFoundException;
 import ru.clevertec.common.exception.NewsNotFoundException;
 
@@ -26,6 +31,26 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NewsNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleNewsNotFoundException(NewsNotFoundException ex) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException ex) {
+        return buildErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(MissingRequestHeaderException.class)
+    public ResponseEntity<ErrorResponse> handleMissingRequestHeader(MissingRequestHeaderException ex) {
+        return buildErrorResponse(HttpStatus.UNAUTHORIZED, ex.getMessage());
+    }
+
+    @ExceptionHandler(InvalidTokenException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidToken(InvalidTokenException ex) {
+        return buildErrorResponse(HttpStatus.UNAUTHORIZED, ex.getMessage());
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorResponse> handleAccessDenied(AccessDeniedException ex) {
+        return buildErrorResponse(HttpStatus.FORBIDDEN, ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
