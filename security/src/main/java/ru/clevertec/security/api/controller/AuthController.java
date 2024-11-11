@@ -10,18 +10,37 @@ import ru.clevertec.security.common.dto.response.JwtAuthenticationResponse;
 import ru.clevertec.security.common.dto.user.UserInfoDTO;
 import ru.clevertec.security.core.service.authentication.AuthenticationService;
 
+/**
+ * Контроллер для аутентификации пользователей.
+ * <p>
+ * Этот контроллер предоставляет REST API для выполнения операций
+ * аутентификации, включая регистрацию пользователей и вход в систему.
+ * </p>
+ */
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthenticationService authenticationService;
 
+    /**
+     * Регистрация нового пользователя.
+     *
+     * @param request объект, содержащий данные для регистрации пользователя
+     * @return информация о зарегистрированном пользователе
+     */
     @PostMapping("/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
     public UserInfoDTO signUp(@RequestBody @Valid SignUpRequest request) {
         return authenticationService.signUp(request);
     }
 
+    /**
+     * Вход пользователя в систему.
+     *
+     * @param request объект, содержащий данные для входа пользователя
+     * @return JWT токен аутентификации
+     */
     @PostMapping("/sign-in")
     public JwtAuthenticationResponse signIn(@RequestBody @Valid SignInRequest request) {
         return authenticationService.signIn(request);

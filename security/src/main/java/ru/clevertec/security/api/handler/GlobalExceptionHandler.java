@@ -22,6 +22,13 @@ import ru.clevertec.security.common.exception.password.PasswordMismatchException
 
 import java.time.LocalDateTime;
 
+/**
+ * Глобальный обработчик исключений для REST API.
+ * <p>
+ * Этот класс обрабатывает различные исключения, возникающие в приложении,
+ * и возвращает соответствующие ответы с ошибками клиенту.
+ * </p>
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {

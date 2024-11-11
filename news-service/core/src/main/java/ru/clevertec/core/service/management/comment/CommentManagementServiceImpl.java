@@ -2,20 +2,28 @@ package ru.clevertec.core.service.management.comment;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.clevertec.common.dto.comment.CommentCreateDTO;
+import ru.clevertec.common.dto.comment.CommentInfoDTO;
+import ru.clevertec.common.dto.comment.CommentPatchDTO;
+import ru.clevertec.common.dto.comment.CommentUpdateDTO;
+import ru.clevertec.common.exception.CommentNotFoundException;
 import ru.clevertec.core.cache.CacheManager;
 import ru.clevertec.core.entity.CommentEntity;
 import ru.clevertec.core.entity.NewsEntity;
 import ru.clevertec.core.mapper.CommentMapper;
 import ru.clevertec.core.repository.CommentRepository;
 import ru.clevertec.core.service.information.news.NewsInformationService;
-import ru.clevertec.common.dto.comment.CommentCreateDTO;
-import ru.clevertec.common.dto.comment.CommentInfoDTO;
-import ru.clevertec.common.dto.comment.CommentPatchDTO;
-import ru.clevertec.common.dto.comment.CommentUpdateDTO;
-import ru.clevertec.common.exception.CommentNotFoundException;
 
 import java.util.Optional;
 
+/**
+ * Реализация сервиса управления комментариями.
+ * <p>
+ * Этот класс реализует интерфейс {@link CommentManagementService} и предоставляет
+ * методы для создания, обновления и удаления комментариев,
+ * включая кэширование результатов.
+ * </p>
+ */
 @Service
 @RequiredArgsConstructor
 public class CommentManagementServiceImpl implements CommentManagementService {

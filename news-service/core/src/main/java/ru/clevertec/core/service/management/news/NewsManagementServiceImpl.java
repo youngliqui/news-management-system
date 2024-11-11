@@ -2,18 +2,26 @@ package ru.clevertec.core.service.management.news;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.clevertec.core.cache.CacheManager;
-import ru.clevertec.core.entity.NewsEntity;
-import ru.clevertec.core.mapper.NewsMapper;
-import ru.clevertec.core.repository.NewsRepository;
 import ru.clevertec.common.dto.news.NewsCreateDTO;
 import ru.clevertec.common.dto.news.NewsInfoDTO;
 import ru.clevertec.common.dto.news.NewsPatchDTO;
 import ru.clevertec.common.dto.news.NewsUpdateDTO;
 import ru.clevertec.common.exception.NewsNotFoundException;
+import ru.clevertec.core.cache.CacheManager;
+import ru.clevertec.core.entity.NewsEntity;
+import ru.clevertec.core.mapper.NewsMapper;
+import ru.clevertec.core.repository.NewsRepository;
 
 import java.util.Optional;
 
+/**
+ * Реализация сервиса управления новостями.
+ * <p>
+ * Этот класс реализует интерфейс {@link NewsManagementService} и предоставляет
+ * методы для создания, обновления и удаления новостей,
+ * включая кэширование результатов.
+ * </p>
+ */
 @Service
 @RequiredArgsConstructor
 public class NewsManagementServiceImpl implements NewsManagementService {
