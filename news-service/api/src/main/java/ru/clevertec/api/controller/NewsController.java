@@ -1,5 +1,6 @@
 package ru.clevertec.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/news")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearerAuth")
 public class NewsController {
     private final NewsInformationService newsInformationService;
     private final NewsManagementService newsManagementService;
