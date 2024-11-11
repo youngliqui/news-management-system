@@ -1,3 +1,4 @@
 rootProject.name = 'news-management-system'
 
 include 'news-service', 'news-service:api', 'news-service:core', 'news-service:common'
+include 'security', 'security:api', 'security:core', 'security:common'
