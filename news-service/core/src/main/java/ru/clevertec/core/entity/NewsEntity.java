@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = "comments")
+@EqualsAndHashCode(exclude = "comments")
 @Entity
 @Table(name = "news")
 public class NewsEntity {

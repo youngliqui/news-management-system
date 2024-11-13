@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = "news")
+@EqualsAndHashCode(exclude = "news")
 @Entity
 @Table(name = "comments")
 public class CommentEntity {
