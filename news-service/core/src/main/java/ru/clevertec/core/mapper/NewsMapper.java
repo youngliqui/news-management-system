@@ -1,12 +1,12 @@
 package ru.clevertec.core.mapper;
 
 import org.mapstruct.*;
-import ru.clevertec.core.entity.CommentEntity;
-import ru.clevertec.core.entity.NewsEntity;
 import ru.clevertec.common.dto.news.NewsCreateDTO;
 import ru.clevertec.common.dto.news.NewsInfoDTO;
 import ru.clevertec.common.dto.news.NewsPatchDTO;
 import ru.clevertec.common.dto.news.NewsUpdateDTO;
+import ru.clevertec.core.entity.CommentEntity;
+import ru.clevertec.core.entity.NewsEntity;
 
 import java.util.List;
 

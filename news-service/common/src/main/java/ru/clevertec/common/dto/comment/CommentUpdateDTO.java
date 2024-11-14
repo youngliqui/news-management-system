@@ -2,13 +2,15 @@ package ru.clevertec.common.dto.comment;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
-@ToString
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CommentUpdateDTO {
     @NotBlank(message = "Username must not be empty")
     private String username;

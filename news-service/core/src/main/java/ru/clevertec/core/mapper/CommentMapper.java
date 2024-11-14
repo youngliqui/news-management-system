@@ -1,12 +1,12 @@
 package ru.clevertec.core.mapper;
 
 import org.mapstruct.*;
-import ru.clevertec.core.entity.CommentEntity;
-import ru.clevertec.core.entity.NewsEntity;
 import ru.clevertec.common.dto.comment.CommentCreateDTO;
 import ru.clevertec.common.dto.comment.CommentInfoDTO;
 import ru.clevertec.common.dto.comment.CommentPatchDTO;
 import ru.clevertec.common.dto.comment.CommentUpdateDTO;
+import ru.clevertec.core.entity.CommentEntity;
+import ru.clevertec.core.entity.NewsEntity;
 
 @Mapper(componentModel = "spring")
 public interface CommentMapper {

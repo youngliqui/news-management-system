@@ -1,13 +1,15 @@
 package ru.clevertec.common.dto.comment;
 
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
-@ToString
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CommentPatchDTO {
     private String username;
 
