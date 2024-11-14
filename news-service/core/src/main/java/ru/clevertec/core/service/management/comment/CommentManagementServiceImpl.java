@@ -63,7 +63,7 @@ public class CommentManagementServiceImpl implements CommentManagementService {
 
         cacheManager.put(patchedComment.getId(), patchedComment);
 
-        return commentMapper.commentToCommentInfoDTO(commentRepository.save(comment));
+        return commentMapper.commentToCommentInfoDTO(patchedComment);
     }
 
     @Override
