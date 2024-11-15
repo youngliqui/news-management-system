@@ -1,6 +1,8 @@
 package ru.clevertec.core.cache.config;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +24,8 @@ import ru.clevertec.core.entity.NewsEntity;
  */
 @Configuration
 @RequiredArgsConstructor
+@Getter
+@Setter
 public class CacheConfig {
     @Value("${cache.algorithm}")
     private CacheAlgorithm algorithm;
