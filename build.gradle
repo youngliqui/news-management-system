@@ -1,0 +1,68 @@
+plugins {
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+/**
+ * General dependencies to all modules
+ */
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    configurations {
+        provided
+    }
+
+    sourceSets {
+        main.compileClasspath += configurations.provided
+        test.compileClasspath += configurations.provided
+        test.runtimeClasspath += configurations.provided
+    }
+
+    group 'ru.clevertec'
+    version '1.0'
+
+    sourceCompatibility = JavaVersion.VERSION_21
+
+    jar {
+        enabled = true
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    /**
+     * Lombok
+     */
+    dependencies {
+        implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+        compileOnly 'org.projectlombok:lombok:1.18.34'
+        testCompileOnly 'org.projectlombok:lombok:1.18.34'
+        annotationProcessor 'org.projectlombok:lombok:1.18.34'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
+    }
+
+    /**
+     * Test
+     */
+    dependencies {
+        testImplementation 'org.springframework.security:spring-security-test'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    /**
+     * Spring doc
+     */
+    dependencies {
+        implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+    }
+}
